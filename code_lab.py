@@ -32,7 +32,14 @@ df_limpiando.Case_Number=df_limpiando.Case_Number_1
 def cell_Date(a,b):
     df_limpiando.Date=df_limpiando.Date.str.replace(a ,b)
 
-cell_Date('*Reported', '')
+cell_Date('^Report[e]?d\s','' )
+cell_Date('Reported[*]?', '')
+cell_Date('^\s*', '')
+cell_Date('$\w*', '')
+cell_Date('^[Circa|Ca.]', '')
+cell_Date('$Reported','')
+cell_Date('^Before\s', '')
+
 
 
 
@@ -41,8 +48,8 @@ def cell_Species(a,b):
     df_limpiando.Species=df_limpiando.Species.str.replace(a ,b)
 cell_Species('shark   probably a blacktip or spinner shark', 'spinner shark') 
 cell_Species('\d+', '') #quitamos numeros /s quita espacios
-cell_Species("\W", '') #quitamos no alpanumericos
-cell_Species('^m', '')
+cell_Species("\W", '') #quitamos no alphanumericos
+cell_Species('[m]', '')
 cell_Species('$m', '') #quitamos solo la primera si aparece en este caso m
 cell_Species("Invalid", "Shark involvement not confirmed")
 cell_Species("to   shark", 'Shark')
