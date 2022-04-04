@@ -1,4 +1,3 @@
-from turtle import left
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 import pandas as pd
@@ -200,7 +199,7 @@ df_limpiando['original order']= df_limpiando['original order'].astype(int)
 
 
 
-df_sucio.columns= df_limpiando.columns
-df_limpiando= df_limpiando.concat(df_sucio, how= 'left')
 
-df_limpiando.to_csv(r"C:\Users\penzi\projectos\Shark-Attack-project-v.0.1\DATASET-CSV\CLeaned_df.csv")
+df_limpiando= df_limpiando.reindex(list(range(0, 25732))).reset_index(drop=True)
+
+df_limpiando.to_csv(r"C:\Users\penzi\projectos\Shark-Attack-project-v.0.1\DATASET-CSV\Cleaned_df.csv")
